@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backend Girl Era🎀☕</title>
+
+  <!-- NOTE: New Romantics is from dafont.
+       Download the .ttf and place it in the same folder,
+       then it will work perfectly. -->
+  <style>
+    @font-face {
+      font-family: 'NewRomantics';
+      src: url('ROMANTIC.ttf');
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap');
+
+    :root {
+      --bg: #ffe6f0;
+      --card: #ffffff;
+      --primary: #f7b7d2;
+      --secondary: #eac7ff;
+      --accent: #ffd6e8;
+      --mint: #d8f3dc;
+      --text: #3a3a3a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* FLOATING BOWS */
+    .bow {
+      position: fixed;
+      font-size: 18px;
+      opacity: 0.4;
+      animation: float 12s linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(110vh); }
+      to { transform: translateY(-20vh); }
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 250px;
+      background: linear-gradient(180deg, var(--secondary), var(--accent));
+      padding: 26px 20px;
+      border-top-right-radius: 28px;
+      border-bottom-right-radius: 28px;
+    }
+
+    .sidebar h2 {
+      font-family: 'NewRomantics', 'Quicksand', cursive;
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      letter-spacing: 0.10em; 
+    }
+
+    .nav-item {
+      background: rgba(255,255,255,0.75);
+      border-radius: 18px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    /* MAIN */
+    .main {
+      flex: 1;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 22px;
+    }
+
+    /* TITLE – SMALL, CUTE, NOT A BANNER */
+    .title {
+      grid-column: 1 / -1;
+      text-align: left;
+      padding-left: 6px;
+    }
+
+    .title h1 {
+      font-family: 'NewRomantics', 'Quicksand', cursive;
+      font-size: 2.4rem;
+      margin: 0;
+      letter-spacing: 0.10em; 
+      text-align: center;
+    }
+
+    .title p {
+      margin-top: 4px;
+      font-size: 0.85rem;
+      opacity: 0.7;
+      text-align: center;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--card);
+      border-radius: 26px;
+      padding: 22px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.07);
+    }
+
+    h3 { margin-top: 0; }
+
+    /* TIMER */
+    .timer {
+      text-align: center;
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+    }
+
+    .time {
+      font-size: 3.2rem;
+      font-weight: 600;
+      margin: 14px 0;
+    }
+
+    .timer button {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      margin: 5px;
+      background: var(--primary);
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .mode { font-size: 0.8rem; opacity: 0.7; }
+
+    .sessions {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .session {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--mint);
+    }
+
+    /* STREAK */
+    .streak {
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+
+    .streak span { font-size: 2.2rem; font-weight: 600; }
+
+    /* ANALYTICS */
+    .analytics { background: linear-gradient(135deg, #fff, var(--accent)); }
+
+    .stat { font-size: 1.6rem; font-weight: 600; }
+    .label { font-size: 0.8rem; opacity: 0.7; }
+
+    /* MILESTONES */
+    .milestones {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      opacity: 1;
+      transition: all 0.3s ease;
+    }
+
+    .badge.locked {
+      opacity: 0.4;
+      filter: grayscale(0.4);
+    }
+
+    .badge.unlocked {
+      opacity: 1;
+      filter: none;
+      transform: scale(1.05);
+    }
+    .badge {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- FLOATING BOWS -->
+<span class="bow" style="left:10%;animation-duration:14s">🎀</span>
+<span class="bow" style="left:40%;animation-duration:18s">🎀</span>
+<span class="bow" style="left:70%;animation-duration:16s">🎀</span>
+
+<div class="sidebar">
+  <h2>Study Stack🎀</h2>
+  <div class="nav-item">☕ Java</div>
+  <div class="nav-item">🌱 DSA</div>
+  <div class="nav-item">🗄️ DBMS</div>
+  <div class="nav-item">🌐 CN</div>
+  <div class="nav-item">💽 OS</div>
+  <div class="nav-item">🏗️ System Design</div>
+  <div class="nav-item">🚀 Spring Boot</div>
+</div>
+
+<div class="main">
+
+  <div class="title">
+    <h1>Backend Girl Era 🎀☕</h1>
+    <p>soft girl aesthetics • hardcore backend prep</p>
+  </div>
+
+  <div class="card timer">
+    <h3>⏳ Focus Session</h3>
+    <div class="time" id="time">25:00</div>
+    <button id="start">Start</button>
+    <button id="pause">Pause</button>
+    <button id="reset">Reset</button>
+    <div class="mode" id="mode">Pomodoro • Focus</div>
+    <div class="sessions" id="sessions"></div>
+  </div>
+
+  <div class="card streak">
+    <h3>🔥 Consistency Streak</h3>
+    <span id="streak">0</span> days
+  </div>
+
+  <div class="card analytics">
+    <h3>📊 Weekly Analytics</h3>
+    <div class="stat" id="hours">0</div>
+    <div class="label">hours focused</div><br />
+    <div class="stat" id="sessionsCount">0</div>
+    <div class="label">study sessions</div>
+  </div>
+
+  <div class="card">
+    <h3>🏆 Milestones</h3>
+    <div class="milestones" id="milestones">
+      <div class="badge locked" data-rule="first">✨ First Session</div>
+      <div class="badge locked" data-rule="hours10">⏱ 10 Hours Focused</div>
+      <div class="badge locked" data-rule="streak7">🔥 7-Day Streak</div>
+      <div class="badge locked" data-rule="sessions50">🌱 50 Sessions</div>
+    </div>
+  </div>
+  </div>
+
+</div>
+
+<script>
+  /* STREAK */
+  const today = new Date().toDateString();
+  let last = localStorage.getItem('lastDay');
+  let streak = Number(localStorage.getItem('streak') || 0);
+
+  if (last !== today) {
+    if (last === new Date(Date.now() - 86400000).toDateString()) streak++;
+    else streak = 1;
+    localStorage.setItem('lastDay', today);
+    localStorage.setItem('streak', streak);
+  }
+  document.getElementById('streak').innerText = streak;
+
+  /* POMODORO */
+  let focusTime = 25 * 60;
+  let breakTime = 5 * 60;
+  let time = focusTime;
+  let isFocus = true;
+  let running = false;
+  let interval;
+
+  let totalSeconds = Number(localStorage.getItem('weekTime') || 0);
+  let totalSessions = Number(localStorage.getItem('weekSessions') || 0);
+
+  const timeEl = document.getElementById('time');
+  const modeEl = document.getElementById('mode');
+  const sessionsEl = document.getElementById('sessions');
+
+  function renderTime() {
+    const m = Math.floor(time / 60).toString().padStart(2, '0');
+    const s = (time % 60).toString().padStart(2, '0');
+    timeEl.innerText = `${m}:${s}`;
+  }
+
+  function renderSessions() {
+    sessionsEl.innerHTML = '';
+    for (let i = 0; i < totalSessions; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'session';
+      sessionsEl.appendChild(dot);
+    }
+  }
+
+  renderTime();
+  renderSessions();
+
+  document.getElementById('start').onclick = () => {
+    if (running) return;
+    running = true;
+    interval = setInterval(() => {
+      time--;
+      totalSeconds++;
+      localStorage.setItem('weekTime', totalSeconds);
+      if (time <= 0) {
+        clearInterval(interval);
+        running = false;
+        isFocus = !isFocus;
+        time = isFocus ? focusTime : breakTime;
+        modeEl.innerText = isFocus ? 'Pomodoro • Focus' : 'Pomodoro • Break';
+        totalSessions++;
+        localStorage.setItem('weekSessions', totalSessions);
+        renderSessions();
+      }
+      renderTime();
+    }, 1000);
+  };
+
+  document.getElementById('pause').onclick = () => {
+    clearInterval(interval);
+    running = false;
+  };
+
+  document.getElementById('reset').onclick = () => {
+    clearInterval(interval);
+    running = false;
+    isFocus = true;
+    time = focusTime;
+    modeEl.innerText = 'Pomodoro • Focus';
+    renderTime();
+  };
+
+  /* ANALYTICS */
+  document.getElementById('hours').innerText = (totalSeconds / 3600).toFixed(1);
+  document.getElementById('sessionsCount').innerText = totalSessions;
+
+  /* MILESTONE UNLOCK LOGIC */
+  const milestoneEls = document.querySelectorAll('.badge');
+
+  milestoneEls.forEach(badge => {
+    const rule = badge.dataset.rule;
+    let unlocked = false;
+
+    if (rule === 'first' && totalSessions >= 1) unlocked = true;
+    if (rule === 'hours10' && totalSeconds >= 36000) unlocked = true; // 10 hrs
+    if (rule === 'streak7' && streak >= 7) unlocked = true;
+    if (rule === 'sessions50' && totalSessions >= 50) unlocked = true;
+
+    if (unlocked) {
+      badge.classList.remove('locked');
+      badge.classList.add('unlocked');
+    }
+  });
+</script>
+
+</body>
+</html>
